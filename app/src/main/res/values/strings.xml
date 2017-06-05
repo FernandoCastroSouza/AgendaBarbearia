@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AgendaBarbearia</string>
+    <string name="nome">Nome</string>
+    <string name="dataNasc">Data de Nascimento</string>
+</resources>

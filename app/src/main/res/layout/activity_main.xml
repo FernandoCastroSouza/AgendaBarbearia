@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="br.estacio.agendabarbearia.interfaces.MainActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarListaAgenda"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <ListView
+        android:id="@+id/lstListaAgenda"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbarListaAgenda"
+        android:clipToPadding="false"
+        android:paddingBottom="120dp" />
+
+    <Button
+        android:id="@+id/btnCadastroAgenda"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="40dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/botao_redondo"
+        android:text="+"
+        android:textColor="#ffffff"
+        android:textSize="30dp" />
+
+</RelativeLayout>

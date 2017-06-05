@@ -5,8 +5,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.v7.app.AlertDialog;
+import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import br.estacio.agendabarbearia.Classes.Agendamento;
@@ -16,8 +22,13 @@ import br.estacio.agendabarbearia.Classes.Agendamento;
  */
 
 public class DBhelper extends SQLiteOpenHelper {
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+    private Calendar calendar = Calendar.getInstance();
+    private Context context;
+
     public DBhelper(Context context) {
         super(context, "DB_AGENDA.db", null, 1);
+        this.context = context;
     }
 
     @Override
@@ -79,7 +90,13 @@ public class DBhelper extends SQLiteOpenHelper {
             Agendamento agendamento = new Agendamento();
 
             agendamento.setIdAgendamento(cursor.getInt(cursor.getColumnIndex("ID_AGENDAMENTO")));
-            agendamento.setData(cursor.getString(cursor.getColumnIndex("DATA")));
+            try {
+                calendar.setTime(dateFormat.parse(cursor.getString(cursor.getColumnIndex("DATA"))));
+                Toast.makeText(context, cursor.getString(cursor.getColumnIndex("DATA")), Toast.LENGTH_SHORT).show();
+            } catch (ParseException e) {
+                calendar.setTime(new Date());
+            }
+            agendamento.setData(calendar);
             agendamento.setHora(cursor.getString(cursor.getColumnIndex("HORA")));
             agendamento.setNomeCliente(cursor.getString(cursor.getColumnIndex("NOME_CLIENTE")));
             agendamento.setTelefone(cursor.getString(cursor.getColumnIndex("TELEFONE")));

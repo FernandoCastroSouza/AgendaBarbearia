@@ -1,11 +1,13 @@
 package br.estacio.agendabarbearia.Classes;
 
+import java.util.Calendar;
+
 /**
  * Created by Fernando on 29/05/2017.
  */
 
 public class Agendamento {
-    private String data;
+    private Calendar data;
     private String hora;
     private String nomeCliente;
     private String telefone;
@@ -14,11 +16,11 @@ public class Agendamento {
     private String procedimento;
     private int idAgendamento;
 
-    public String getData() {
+    public Calendar getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(Calendar data) {
         this.data = data;
     }
 

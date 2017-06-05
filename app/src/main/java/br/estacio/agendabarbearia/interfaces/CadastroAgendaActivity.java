@@ -9,8 +9,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 import java.text.SimpleDateFormat;
@@ -29,11 +27,8 @@ public class CadastroAgendaActivity extends AppCompatActivity implements DatePic
     private Button formFotoButton;
     private EditText edtNome;
     private EditText edtDataAgend;
-    private EditText edtMail;
+    private EditText edtHora;
     private EditText edtFone;
-    private RadioGroup rgSexo;
-    private RadioButton feminino;
-    private RadioButton masculino;
     private Spinner spinnerProcedimento;
     private Button btnSalvarAgenda;
     private Toolbar toolbarAgenda;
@@ -57,11 +52,8 @@ public class CadastroAgendaActivity extends AppCompatActivity implements DatePic
         formFotoButton = (Button) findViewById(R.id.formFotoButton);
         edtNome = (EditText) findViewById(R.id.edtNome);
         edtDataAgend = (EditText) findViewById(R.id.edtDataAgend);
-        edtMail = (EditText) findViewById(R.id.edtMail);
+        edtHora = (EditText) findViewById(R.id.edtHora);
         edtFone = (EditText) findViewById(R.id.edtFone);
-        rgSexo = (RadioGroup) findViewById(R.id.rgSexo);
-        feminino = (RadioButton) findViewById(R.id.feminino);
-        masculino = (RadioButton) findViewById(R.id.masculino);
         spinnerProcedimento = (Spinner) findViewById(R.id.spinnerProcedimento);
         btnSalvarAgenda = (Button) findViewById(R.id.btnSalvarAgenda);
 
@@ -75,6 +67,10 @@ public class CadastroAgendaActivity extends AppCompatActivity implements DatePic
         btnSalvarAgenda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                agendamento.setNomeCliente(edtNome.getText().toString());
+                agendamento.setData(getDate());
+                agendamento.setHora(edtHora.getText().toString());
+                agendamento.setTelefone(edtFone.getText().toString().replaceAll("[^0-9]", ""));
                 if (agendamento.getIdAgendamento() <= 0) {
                     db.inserirTB_AGENDAMENTO(agendamento);
                 } else {
@@ -85,8 +81,11 @@ public class CadastroAgendaActivity extends AppCompatActivity implements DatePic
         });
 
         if (getIntent().getIntExtra("ID_AGENDAMENTO", 0) > 0) {
-            agendamento = db.listaAgendamento("SELECT * FROM TB_AGENDAMENTO WHERE " + getIntent().getIntExtra("ID_AGENDAMENTO", 0) + ";").get(0);
+            agendamento = db.listaAgendamento("SELECT * FROM TB_AGENDAMENTO WHERE ID_AGENDAMENTO = " + getIntent().getIntExtra("ID_AGENDAMENTO", 0) + ";").get(0);
             edtNome.setText(agendamento.getNomeCliente());
+            setDate(agendamento.getData());
+            edtHora.setText(agendamento.getHora());
+            edtFone.setText(agendamento.getTelefone());
         }
     }
 

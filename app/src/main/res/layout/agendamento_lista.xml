@@ -1,15 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="50dp"
+    android:orientation="horizontal"
+    android:padding="5dp">
 
-    <TextView
-        android:id="@+id/txtNomeCliente"
+    <ImageView
+        android:id="@+id/itemFoto"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/foto" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:gravity="center"
-        android:text="Nome Cliente" />
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtNomeCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nome Cliente"
+                android:textColor="#000000"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/txtHoraCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtNomeCliente"
+                android:text="00:00:00"
+                android:textColor="#001aff"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/txtDataCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtNomeCliente"
+                android:layout_toEndOf="@+id/txtHoraCliente"
+                android:layout_toStartOf="@+id/txtFoneCliente"
+                android:gravity="center_horizontal"
+                android:text="dd/MM/yyyy"
+                android:textColor="#001aff"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/txtFoneCliente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/txtNomeCliente"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginStart="20dp"
+                android:gravity="center_horizontal"
+                android:text="(00)00000-0000"
+                android:textColor="#FF0000"
+                android:textSize="10sp" />
+
+
+        </RelativeLayout>
+    </LinearLayout>
 
 </LinearLayout>

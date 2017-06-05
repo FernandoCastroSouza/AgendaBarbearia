@@ -20,6 +20,7 @@ import java.util.GregorianCalendar;
 
 import br.estacio.agendabarbearia.Classes.Agendamento;
 import br.estacio.agendabarbearia.DatePickerFragment;
+import br.estacio.agendabarbearia.Extras.DBhelper;
 import br.estacio.agendabarbearia.R;
 
 public class CadastroAgendaActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
@@ -50,6 +51,8 @@ public class CadastroAgendaActivity extends AppCompatActivity implements DatePic
         setSupportActionBar(toolbarAgenda);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        final DBhelper db = new DBhelper(this);
+
         foto = (ImageView) findViewById(R.id.foto);
         formFotoButton = (Button) findViewById(R.id.formFotoButton);
         edtNome = (EditText) findViewById(R.id.edtNome);
@@ -69,6 +72,22 @@ public class CadastroAgendaActivity extends AppCompatActivity implements DatePic
             }
         });
 
+        btnSalvarAgenda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (agendamento.getIdAgendamento() <= 0) {
+                    db.inserirTB_AGENDAMENTO(agendamento);
+                } else {
+                    db.atualizaTB_AGENDAMENTO(agendamento);
+                }
+                finish();
+            }
+        });
+
+        if (getIntent().getIntExtra("ID_AGENDAMENTO", 0) > 0) {
+            agendamento = db.listaAgendamento("SELECT * FROM TB_AGENDAMENTO WHERE " + getIntent().getIntExtra("ID_AGENDAMENTO", 0) + ";").get(0);
+            edtNome.setText(agendamento.getNomeCliente());
+        }
     }
 
     public void datePicker(View v) {

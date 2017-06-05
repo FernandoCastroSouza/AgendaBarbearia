@@ -1,33 +1,32 @@
 package br.estacio.agendabarbearia.Classes;
 
-import java.util.Calendar;
-
 /**
  * Created by Fernando on 29/05/2017.
  */
 
 public class Agendamento {
-    private Calendar data;
-    private Calendar hora;
+    private String data;
+    private String hora;
     private String nomeCliente;
     private String telefone;
     private String fotoAntes;
     private String fotoDepois;
     private String procedimento;
+    private int idAgendamento;
 
-    public Calendar getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Calendar data) {
+    public void setData(String data) {
         this.data = data;
     }
 
-    public Calendar getHora() {
+    public String getHora() {
         return hora;
     }
 
-    public void setHora(Calendar hora) {
+    public void setHora(String hora) {
         this.hora = hora;
     }
 
@@ -69,5 +68,13 @@ public class Agendamento {
 
     public void setProcedimento(String procedimento) {
         this.procedimento = procedimento;
+    }
+
+    public int getIdAgendamento() {
+        return idAgendamento;
+    }
+
+    public void setIdAgendamento(int idAgendamento) {
+        this.idAgendamento = idAgendamento;
     }
 }
